@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>安徽省人身损害赔偿计算器 · 未成年人版</title>
+<title>安徽省人身损害赔偿计算器</title>
 <style>
   :root{
     --bg:#F6F4F0;
@@ -230,7 +230,7 @@
     <div>
       <div class="eyebrow">Anhui · Personal Injury</div>
       <h1>安徽省人身损害赔偿计算器</h1>
-      <p class="sub">未成年人场景优先 · 依 <b>《安徽省高级人民法院审理人身损害赔偿案件若干问题的指导意见》〔皖高法〔2006〕56号〕</b> 口径</p>
+      <p class="sub">全年龄段适用 · 依 <b>《安徽省高级人民法院审理人身损害赔偿案件若干问题的指导意见》〔皖高法〔2006〕56号〕</b> 口径</p>
     </div>
     <label class="yearsw">
       <span>统计年度口径</span>
@@ -250,15 +250,15 @@
       </div>
       <div class="panel-bd">
 
-        <div class="banner" id="minorBanner">
+        <div class="banner show">
           <span class="dot"></span>
-          <span>受害人未满 18 周岁，已自动适用未成年人专项规则：误工费原则不计、残疾赔偿金按 20 年全额计算、护理人数可依医嘱计 2 人。</span>
+          <span>安徽自 2019 年 12 月 16 日起人身损害赔偿标准城乡统一：残疾赔偿金、死亡赔偿金按城镇居民人均可支配收入计算，被扶养人生活费按城镇居民人均消费支出计算，不再区分城乡户籍。</span>
         </div>
 
         <div class="field">
           <div class="flabel"><span>受害人年龄</span><span class="hint">周岁，按定残日／起诉时计</span></div>
           <div class="inline">
-            <input type="number" id="age" value="10" min="0" max="110" step="1">
+            <input type="number" id="age" value="40" min="0" max="110" step="1">
             <span class="unit">周岁</span>
           </div>
         </div>
@@ -325,14 +325,8 @@
         </div>
 
         <div class="field">
-          <div class="flabel"><span>误工费口径</span><span class="hint">未成年人原则不计</span></div>
-          <select id="lostType" style="width:100%;">
-            <option value="none">不计误工费（未成年人 / 无劳动收入）</option>
-            <option value="private">无固定收入 · 城镇私营单位（62,079 元/年）</option>
-            <option value="nonprivate">无固定收入 · 城镇非私营单位（109,374 元/年）</option>
-            <option value="rural">无固定收入 · 农村 / 农林牧渔（86,712 元/年）</option>
-            <option value="fixed">有固定收入（按实际减少额）</option>
-          </select>
+          <div class="flabel"><span>误工费口径</span><span class="hint">按行业或实际收入选择，随年度自动换算</span></div>
+          <select id="lostType" style="width:100%;"></select>
           <div class="inline" id="fixedBox" style="margin-top:10px;display:none;">
             <input type="number" id="monthWage" value="6000" min="0" step="100">
             <span class="unit">元／月（税前，因误工实际减少）</span>
@@ -405,24 +399,15 @@
 
         <div class="rows" id="rows"></div>
 
-        <div class="notes" id="minorNotes" style="display:none;">
-          <h3>未成年人专项提示</h3>
-          <ul>
-            <li><b>误工费</b>：事故发生时受害人未成年的，原则上不计算误工费；举证证明确有劳动收入的除外。</li>
-            <li><b>残疾赔偿金</b>：未满 60 周岁按 20 年全额计算，不因未成年而扣减——此为未成年人案件赔偿数额的主要来源。<i>（人身损害赔偿解释第12条）</i></li>
-            <li><b>护理费</b>：护理人数原则 1 人；医疗机构或鉴定机构明确需 2 人的，可按 2 人计。<i>（解释第8条）</i></li>
-            <li><b>学业损失</b>：补课费、复读费、择校费不属法定赔偿项目，原则上不予支持，仅在调解中作酌定因素。</li>
-            <li><b>责任相抵</b>：监护人未尽监护职责的，可减轻侵权人责任。<i>（民法典第1173条）</i></li>
-          </ul>
-        </div>
-
         <div class="notes">
-          <h3>安徽口径提示</h3>
+          <h3>计算规则提示</h3>
           <ul>
-            <li><b>城乡统一</b>：安徽自 2019 年 12 月 16 日起人身损害赔偿标准城乡统一，残疾赔偿金、死亡赔偿金一律按城镇居民人均可支配收入计算，被扶养人生活费按城镇居民人均消费支出计算。</li>
+            <li><b>误工费</b>：有固定收入的按实际减少额计算；无固定收入的，参照受诉法院所在地相同或相近行业上一年度职工平均工资计算，本表已内置安徽 19 个行业门类数据。<i>（人身损害赔偿解释第7条）</i></li>
+            <li><b>残疾赔偿金年限</b>：未满 60 周岁 20 年；60—74 周岁＝20−(年龄−60)；75 周岁以上 5 年。<i>（解释第12条）</i></li>
+            <li><b>多处伤残</b>：以最高等级系数为基础，每增加一处按附加指数叠加，附加之和不超过 10%，总系数不超过 100%。<i>（安徽高院指导意见）</i></li>
             <li><b>ICU 扣除</b>：住院伙食补助费、交通费按扣除 ICU 后的住院天数计算；营养费、护理费如鉴定意见已单列 ICU 期间，应相应扣减。</li>
             <li><b>后续治疗费</b>：安徽司法鉴定机构自 2022 年 12 月 1 日起不再受理后续治疗费鉴定，须待实际发生后另诉，或凭医疗机构证明主张必然发生额。</li>
-            <li><b>精神抚慰金</b>：安徽高院指导意见仅设区间（伤残 5,000—80,000 元），最终由法院酌定；受害人有过错的按过错程度相应减少。<i>（指导意见第25、26条）</i></li>
+            <li><b>精神抚慰金</b>：安徽高院指导意见设区间——未构成伤残 1,000—5,000 元，构成伤残 5,000—80,000 元，死亡 50,000—80,000 元，最终由法院酌定；受害人有过错的按过错程度相应减少。<i>（指导意见第25、26条）</i></li>
           </ul>
         </div>
 
@@ -498,6 +483,53 @@
     }
   };
 
+  /* 安徽 19 个行业门类：城镇非私营单位就业人员年平均工资（元/年） */
+  var IND = [
+    { k:"农林牧渔", n:"农、林、牧、渔业",           v:{ "2025":86712,  "2024":69869 } },
+    { k:"采矿",     n:"采矿业",                     v:{ "2025":148652, "2024":155294 } },
+    { k:"制造",     n:"制造业",                     v:{ "2025":101432, "2024":97099 } },
+    { k:"电力",     n:"电力、热力、燃气及水生产和供应业", v:{ "2025":161042, "2024":152145 } },
+    { k:"建筑",     n:"建筑业",                     v:{ "2025":89709,  "2024":87689 } },
+    { k:"批发零售", n:"批发和零售业",               v:{ "2025":102468, "2024":96397 } },
+    { k:"交通运输", n:"交通运输、仓储和邮政业",      v:{ "2025":109503, "2024":105169 } },
+    { k:"住宿餐饮", n:"住宿和餐饮业",               v:{ "2025":60461,  "2024":58192 } },
+    { k:"信息传输", n:"信息传输、软件和信息技术服务业", v:{ "2025":152524, "2024":145904 } },
+    { k:"金融",     n:"金融业",                     v:{ "2025":167335, "2024":157193 } },
+    { k:"房地产",   n:"房地产业",                   v:{ "2025":68174,  "2024":73244 } },
+    { k:"租赁商务", n:"租赁和商务服务业",            v:{ "2025":78351,  "2024":78211 } },
+    { k:"科研技术", n:"科学研究和技术服务业",        v:{ "2025":143524, "2024":142833 } },
+    { k:"水利环境", n:"水利、环境和公共设施管理业",   v:{ "2025":52668,  "2024":48198 } },
+    { k:"居民服务", n:"居民服务、修理和其他服务业",   v:{ "2025":63508,  "2024":56902 } },
+    { k:"教育",     n:"教育",                       v:{ "2025":128690, "2024":120543 } },
+    { k:"卫生",     n:"卫生和社会工作",              v:{ "2025":141030, "2024":136234 } },
+    { k:"文体娱乐", n:"文化、体育和娱乐业",           v:{ "2025":108192, "2024":100243 } },
+    { k:"公共管理", n:"公共管理、社会保障和社会组织",  v:{ "2025":116992, "2024":111864 } }
+  ];
+
+  function indByKey(k){
+    for(var i=0;i<IND.length;i++){ if(IND[i].k === k) return IND[i]; }
+    return null;
+  }
+
+  /* 误工费下拉：单位性质口径 + 分行业口径，随年度动态生成 */
+  function lostOptionsHTML(year, sel){
+    var h = '';
+    h += '<option value="none"' + (sel === 'none' ? ' selected' : '') + '>不计误工费</option>';
+    h += '<option value="fixed"' + (sel === 'fixed' ? ' selected' : '') + '>有固定收入（按实际减少额）</option>';
+    h += '<optgroup label="无固定收入 · 单位性质平均工资">';
+    h += '<option value="total:private"' + (sel === 'total:private' ? ' selected' : '') + '>城镇私营单位平均工资</option>';
+    h += '<option value="total:nonprivate"' + (sel === 'total:nonprivate' ? ' selected' : '') + '>城镇非私营单位平均工资</option>';
+    h += '</optgroup>';
+    h += '<optgroup label="无固定收入 · 分行业（非私营单位）">';
+    IND.forEach(function(it){
+      var a = it.v[year];
+      h += '<option value="ind:' + it.k + '"' + (sel === 'ind:' + it.k ? ' selected' : '') + '>'
+         + it.n + '（' + money0(a) + ' 元/年 ≈ ' + (a/365).toFixed(2) + ' 元/天）</option>';
+    });
+    h += '</optgroup>';
+    return h;
+  }
+
   var MEAL = 100;         // 住院伙食补助（全省统一 100 元/天）
   var NUTRI = 30;         // 营养费日标准
   var TRAVEL = 30;        // 市内交通费日标准
@@ -540,7 +572,8 @@
 
   /* ---------- 计算 ---------- */
   function calc(){
-    var y = DATA[$("yearSel").value];
+    var yKey = $("yearSel").value;
+    var y = DATA[yKey];
     var age = num($("age").value);
     var lostDays = num($("lost").value);
     var careDays = num($("care").value);
@@ -576,24 +609,32 @@
 
     // 2 误工费
     if(lostDays > 0 && lostType !== "none"){
-      var daily = 0, calcTxt = "";
+      var daily = 0, calcTxt = "", basisName = "";
       if(lostType === "fixed"){
         var mw = num($("monthWage").value);
         daily = mw * 12 / 365;
+        basisName = "有固定收入";
         calcTxt = money0(mw) + " 元/月 × 12 ÷ 365 ＝ " + money(daily) + " 元/天 × " + lostDays + " 天";
-      } else if(lostType === "rural"){
-        daily = y.wageRural / 365;
-        calcTxt = money0(y.wageRural) + " 元/年 ÷ 365 ＝ " + money(daily) + " 元/天 × " + lostDays + " 天";
-      } else if(lostType === "nonprivate"){
-        daily = y.wageNonPrivate / 365;
-        calcTxt = money0(y.wageNonPrivate) + " 元/年 ÷ 365 ＝ " + money(daily) + " 元/天 × " + lostDays + " 天";
       } else {
-        daily = y.wagePrivate / 365;
-        calcTxt = money0(y.wagePrivate) + " 元/年 ÷ 365 ＝ " + money(daily) + " 元/天 × " + lostDays + " 天";
+        var annual = 0;
+        if(lostType === "total:private"){
+          annual = y.wagePrivate; basisName = "城镇私营单位平均工资";
+        } else if(lostType === "total:nonprivate"){
+          annual = y.wageNonPrivate; basisName = "城镇非私营单位平均工资";
+        } else if(lostType.indexOf("ind:") === 0){
+          var item = indByKey(lostType.slice(4));
+          if(item){ annual = item.v[yKey]; basisName = item.n; }
+        }
+        if(annual > 0){
+          daily = annual / 365;
+          calcTxt = money0(annual) + " 元/年 ÷ 365 ＝ " + money(daily) + " 元/天 × " + lostDays + " 天";
+        }
       }
-      var wa = daily * lostDays;
-      items.push({ name: "误工费", amount: wa, calc: calcTxt, note: "解释第7条；参照上年度相同或相近行业平均工资" });
-      sum += wa;
+      if(daily > 0){
+        var wa = daily * lostDays;
+        items.push({ name: "误工费", amount: wa, calc: calcTxt, note: "解释第7条；参照" + basisName });
+        sum += wa;
+      }
     }
 
     // 3 护理费
@@ -659,6 +700,14 @@
         note: "皖高法〔2006〕56号第25条（5,000—80,000 元区间，法院酌定）"
       });
       sum += sa;
+    } else if(solatManual > 0){
+      items.push({
+        name: "精神损害抚慰金",
+        amount: solatManual,
+        calc: "手动指定 " + money0(solatManual) + " 元（未构成伤残）",
+        note: "皖高法〔2006〕56号第25条第（二）项（1,000—5,000 元区间）"
+      });
+      sum += solatManual;
     }
 
     // 8 医疗费
@@ -701,15 +750,6 @@
     $("totalSub").textContent = cnt === 0 ? "—" : "共 " + cnt + " 项 · " + r.y.label + "口径";
 
     $("baseTag").textContent = r.y.label;
-
-    var nb = $("minorBanner"), mn = $("minorNotes");
-    if(r.isMinor){
-      nb.classList.add("show");
-      mn.style.display = "block";
-    } else {
-      nb.classList.remove("show");
-      mn.style.display = "none";
-    }
 
     $("footYear").textContent = $("yearSel").value;
 
@@ -776,24 +816,20 @@
     render();
   });
 
-  var autoMinorDone = false;
-  $("age").addEventListener("input", function(){
-    var a = num(this.value);
-    if(a > 0 && a < 18 && !autoMinorDone){
-      $("lostType").value = "none";
-      $("fixedBox").style.display = "none";
-      autoMinorDone = true;
-    }
-    if(a >= 18 && autoMinorDone){
-      autoMinorDone = false;
-    }
+  // 年度切换：重建误工费行业下拉（保留原选择），再重算
+  $("yearSel").addEventListener("change", function(){
+    var cur = $("lostType").value;
+    $("lostType").innerHTML = lostOptionsHTML(this.value, cur);
     render();
   });
 
-  ["yearSel","level","extra1","lost","care","nutri","hosp","icu","med","monthWage","solat"].forEach(function(id){
+  ["level","extra1","lost","care","nutri","hosp","icu","med","monthWage","solat","age"].forEach(function(id){
     $(id).addEventListener("input", render);
     $(id).addEventListener("change", render);
   });
+
+  // 初始化误工费下拉
+  $("lostType").innerHTML = lostOptionsHTML($("yearSel").value, "total:private");
 
   /* ---------- 复制 ---------- */
   $("copyBtn").addEventListener("click", function(){
@@ -801,7 +837,7 @@
     if(r.items.length === 0){ toast("暂无可复制的明细"); return; }
     var lines = [];
     lines.push("人身损害赔偿明细（安徽省 · " + r.y.label + "口径）");
-    lines.push("年龄：" + r.age + " 周岁" + (r.isMinor ? "（未成年人）" : "") + "；伤残等级：" + (r.level > 0 ? r.level + " 级" : "未构成伤残"));
+    lines.push("年龄：" + r.age + " 周岁；伤残等级：" + (r.level > 0 ? r.level + " 级" : "未构成伤残"));
     lines.push("");
     r.items.forEach(function(it, i){
       lines.push((i + 1) + ". " + it.name + "：" + money(it.amount) + " 元");
